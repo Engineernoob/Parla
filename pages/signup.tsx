@@ -1,9 +1,11 @@
 // parla-frontend/pages/signup.tsx
+
 "use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Link from 'next/link';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -71,6 +73,11 @@ const Signup = () => {
           Sign Up
         </button>
       </form>
+      <div className="mt-4">
+        <Link href="/login">
+          <span className="text-blue-500 hover:underline">Already have an account? Login</span>
+        </Link>
+      </div>
     </div>
   );
 };
