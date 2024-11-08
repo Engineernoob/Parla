@@ -1,6 +1,4 @@
 // parla-frontend/pages/login.tsx
-// parla-frontend/pages/login.tsx
-
 "use client";
 
 import React, { useState } from 'react';
