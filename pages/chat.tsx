@@ -50,7 +50,7 @@ const Chat = () => {
       console.error("Error fetching AI response:", (error as Error).message);
     }
   };
-
+  
   const handleUserInput = () => {
     handleSendMessage();
     handleAIResponse(inputValue);
