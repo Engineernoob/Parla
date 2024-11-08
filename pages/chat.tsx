@@ -58,31 +58,53 @@ const Chat = () => {
 
   return (
 
-      <div className="chat-container flex flex-col items-center justify-center min-h-screen">
-        <div className="message-list w-full max-w-2xl bg-white p-4 rounded shadow-md mb-4 h-96 overflow-y-auto">
-          {messages.map((message, index) => (
-            <div key={index} className={`message mb-2 ${message.sender === "AI" ? "text-left text-blue-600" : "text-right text-green-600"}`}>
-              <strong>{message.sender}: </strong>
-              <span>{message.content}</span>
-            </div>
-          ))}
-        </div>
-        <div className="chat-input w-full max-w-2xl flex space-x-2">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-grow p-2 border border-gray-300 rounded"
-          />
-          <button onClick={handleUserInput} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-            Send
-          </button>
-        </div>
-        <div className="mt-4">
-          <Link href="/" className="text-blue-500 hover:underline">
-            Back to Home
-          </Link>
+      <div className="chat-container flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div className="chat-room w-full max-w-4xl bg-white rounded shadow-md flex flex-col h-[80vh]">
+          {/* Header */}
+          <div className="chat-header bg-blue-600 text-white p-4 rounded-t flex justify-between items-center">
+            <h2 className="text-2xl font-bold">Parla Chat Room</h2>
+            <Link href="/">
+              <span className="text-sm bg-white text-blue-600 py-1 px-3 rounded hover:bg-gray-200">Back to Home</span>
+            </Link>
+          </div>
+
+          {/* Messages Area */}
+          <div className="message-list flex-grow p-4 overflow-y-auto">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`message mb-4 flex ${message.sender === "AI" ? "justify-start" : "justify-end"}`}
+              >
+                <div
+                  className={`p-3 rounded-lg max-w-xs ${
+                    message.sender === "AI" ? "bg-gray-200 text-left" : "bg-blue-500 text-white text-right"
+                  }`}
+                >
+                  <strong className="block text-sm mb-1">
+                    {message.sender === "AI" ? "Parla AI" : "You"}
+                  </strong>
+                  <span>{message.content}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Input Area */}
+          <div className="chat-input flex items-center p-4 bg-gray-100 rounded-b">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Type a message..."
+              className="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            />
+            <button
+              onClick={handleUserInput}
+              className="ml-4 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700"
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
 
