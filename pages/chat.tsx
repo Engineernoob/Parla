@@ -1,4 +1,5 @@
 // parla-frontend/pages/chat.tsx
+"use client"
 
 import { useEffect, useState } from "react";
 import useSocket from "../utils/useSocket";
