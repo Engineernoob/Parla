@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -9,15 +10,26 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const router = useRouter();
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    // Add sign-up logic here
-    console.log('Signing up with:', { email, password });
-    router.push('/chat'); // Redirect to chat after successful signup
+    try {
+      const response = await axios.post('http://localhost:5000/api/signup', {
+        email,
+        password,
+      });
+      console.log(response.data.message);
+      router.push('/chat'); // Redirect to chat after successful signup
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Signup failed:', error.response?.data.message || error.message);
+      } else {
+        console.error('An unexpected error occurred:', (error as Error).message);
+      }
+    }
   };
 
   return (

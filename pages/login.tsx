@@ -2,17 +2,29 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add authentication logic here
-    console.log('Logging in with:', { email, password });
-    router.push('/chat'); // Redirect to chat after successful login
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', {
+        email,
+        password,
+      });
+      console.log(response.data.message);
+      router.push('/chat'); // Redirect to chat after successful login
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Login failed:', error.response?.data.message || error.message);
+      } else {
+        console.error('An unexpected error occurred:', (error as Error).message);
+      }
+    }
   };
 
   return (
