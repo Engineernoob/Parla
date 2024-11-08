@@ -1,4 +1,5 @@
 // parla-frontend/pages/login.tsx
+"use client"
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
