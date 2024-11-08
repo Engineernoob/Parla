@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import useSocket from "../utils/useSocket";
-import Layout from "../app/layout";
 import axios from "axios";
 import Link from "next/link";
 
@@ -58,7 +57,7 @@ const Chat = () => {
   };
 
   return (
-    <Layout>
+
       <div className="chat-container flex flex-col items-center justify-center min-h-screen">
         <div className="message-list w-full max-w-2xl bg-white p-4 rounded shadow-md mb-4 h-96 overflow-y-auto">
           {messages.map((message, index) => (
@@ -81,12 +80,12 @@ const Chat = () => {
           </button>
         </div>
         <div className="mt-4">
-          <Link href="/">
-            <a className="text-blue-500 hover:underline">Back to Home</a>
+          <Link href="/" className="text-blue-500 hover:underline">
+            Back to Home
           </Link>
         </div>
       </div>
-    </Layout>
+
   );
 };
 

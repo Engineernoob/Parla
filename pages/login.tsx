@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
-import Layout from '../app/layout'; // Assuming the Layout component is in the same directory
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <Layout>
+   
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 className="text-3xl font-bold mb-6">Login</h1>
         <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
@@ -69,7 +69,6 @@ const Login = () => {
           </Link>
         </div>
       </div>
-    </Layout>
   );
 };
 
